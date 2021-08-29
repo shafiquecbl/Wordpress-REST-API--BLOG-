@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:wordpress_app/Modal/modal.dart';
 import 'package:wordpress_app/Screens/Posts/post_detail_page.dart';
 import 'package:wordpress_app/Widget/navigator.dart';
-
 import 'components/post_category.dart';
 import 'components/post_image.dart';
 

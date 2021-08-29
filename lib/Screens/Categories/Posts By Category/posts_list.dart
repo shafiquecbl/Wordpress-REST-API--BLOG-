@@ -5,8 +5,8 @@ import 'package:wordpress_app/Screens/Posts/components/Post%20Cell/post_cell.dar
 import 'package:wordpress_app/Widget/loading.dart';
 
 class PostsByCategoryList extends StatefulWidget {
-  final String? url;
-  const PostsByCategoryList({@required this.url});
+  final String? url, search;
+  const PostsByCategoryList({@required this.url, @required this.search});
 
   @override
   _PostsByCategoryListState createState() => _PostsByCategoryListState();
@@ -16,7 +16,10 @@ class _PostsByCategoryListState extends State<PostsByCategoryList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: FetchData().fetchPostByCategories(widget.url.toString()),
+      future: widget.search == ''
+          ? FetchData().fetchPostByCategories(widget.url.toString())
+          : FetchData().fetchPostsBySearchQueryInCategory(
+              widget.url.toString(), widget.search.toString()),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting)
           return ShowLoading();

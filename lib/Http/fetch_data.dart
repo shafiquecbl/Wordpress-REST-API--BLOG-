@@ -78,4 +78,15 @@ class FetchData {
 
     return convertedData;
   }
+
+  Future fetchPostsBySearchQueryInCategory(String url, String search) async {
+    final response = await http.get(
+        Uri.parse('$url&per_page=50&search=\'$search\''),
+        headers: {"Accept": "application/json"});
+    List<Post> convertedData = (json.decode(response.body) as List)
+        .map((e) => Post.fromJSON(e))
+        .toList();
+
+    return convertedData;
+  }
 }

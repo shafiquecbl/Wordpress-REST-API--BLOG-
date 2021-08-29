@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wordpress_app/Http/fetch_data.dart';
 import 'package:wordpress_app/Modal/modal.dart';
 import 'package:wordpress_app/Screens/Categories/Posts%20By%20Category/posts_list.dart';
 
@@ -84,11 +85,15 @@ class _PostsByCategoryState extends State<PostsByCategory> {
             child: RefreshIndicator(
               onRefresh: () async {
                 setState(() {
-                  // FetchData().fetchPosts(search);
+                  search == ''
+                      ? FetchData().fetchPostByCategories(
+                          widget.category!.posts.toString())
+                      : FetchData().fetchPostsBySearchQueryInCategory(
+                          widget.category!.posts.toString(), search.toString());
                 });
               },
-              child:
-                  PostsByCategoryList(url: widget.category!.posts.toString()),
+              child: PostsByCategoryList(
+                  url: widget.category!.posts.toString(), search: search),
             ),
           ),
         ],

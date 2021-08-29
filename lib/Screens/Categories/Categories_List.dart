@@ -38,7 +38,7 @@ class _CategoriesListPageState extends State<CategoriesListPage> {
             child: RefreshIndicator(
                 onRefresh: () async {
                   setState(() {
-                    // FetchData().fetchCategories();
+                    FetchData().fetchCategories();
                   });
                 },
                 child: CategoryList()),

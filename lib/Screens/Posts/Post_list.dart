@@ -65,7 +65,10 @@ class _PostListPageState extends State<PostListPage> {
             child: RefreshIndicator(
                 onRefresh: () async {
                   setState(() {
-                    FetchData().fetchPosts();
+                    search == ''
+                        ? FetchData().fetchPosts()
+                        : FetchData()
+                            .fetchPostsBySearchQuery(search.toString());
                   });
                 },
                 child: PostList(
